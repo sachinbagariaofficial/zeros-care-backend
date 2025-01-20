@@ -1,14 +1,31 @@
-const express = require("express");
-const dotenv = require("dotenv");
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/database";
+import productRouter from "./routes/productRouter";
 
-dotenv.config()
+dotenv.config();
+
 const app = express();
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 
-app.get("/sachin", (req: any, res: any) => {
-    res.status(200).send("hello world")
+app.use(express.json())
+app.use("/product", productRouter)
+
+
+app.all("/", (req, res) => {
+    res.status(200).send("You have connected to zrso-care")
 });
 
-app.listen(3000, () => {
-    console.log(`Example app listening on port${port} `)
-})
+
+
+// Connect to the database and start the server
+connectDB()
+    .then(() => {
+
+        app.listen(port, () => {
+            console.log(`Server is running on http://localhost:${port}`);
+        });
+    })
+    .catch((err) => {
+        console.error("Database connection failed:", err);
+    });
