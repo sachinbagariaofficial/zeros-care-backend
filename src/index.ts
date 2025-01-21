@@ -2,12 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/database";
 import productRouter from "./routes/productRouter";
-
+import multer = require("multer");
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
+const upload = multer();
 
+app.use(upload.any())
 app.use(express.json())
 app.use("/product", productRouter)
 

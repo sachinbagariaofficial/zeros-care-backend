@@ -7,31 +7,32 @@ const productSchema = new Schema({
         required: true,
         unique: true,
     },
-    batchId: {
+    batchID: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        // toUpperCase: true
     },
     yearOfManufacture: {
-        type: Date,
-        require: true
+        type: String,
+        required: true
     },
     expire: {
-        type: Date,
-        require: true
-    },
-    company: {
         type: String,
-        require: true
+        required: true
+    },
+    companyName: {
+        type: String,
+        required: true
     },
 
     packing: {
         type: String,
-        require: true
+        required: true
     },
     packingType: {
         type: String,
-        require: true
+        required: true
     },
     quantity: {
         type: Number,
@@ -41,13 +42,13 @@ const productSchema = new Schema({
         type: Number,
 
     },
-    mrp: {
+    MRP: {
         type: Number,
-        require: true
+        required: true
     },
     rate: {
         type: Number,
-        require: true
+        required: true
     }
 
 
